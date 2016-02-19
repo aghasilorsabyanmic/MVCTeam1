@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.HelloWorld.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,9 +15,25 @@ namespace MVC.HelloWorld.Controllers
             return View();
         }
 
-        public ActionResult Pizza()
+        public ActionResult Pizza(int page = 1)
         {
-            return View();
+            ViewBag.page = page;
+            
+
+            for (int i = 0; i < 10; i++)
+            {
+                ViewData.Add($"data{i}", i);
+            }
+
+            var quantity = 2;
+
+            var list = ModelFactory.GetPizzaList();
+            var model = list
+                .Skip((page - 1) * quantity)
+                .Take(quantity)
+                .Select(p => ModelFactory.Create(p));
+
+            return View(model);
         }
     }
 }
