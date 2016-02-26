@@ -10,6 +10,7 @@ namespace ProductManager.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.imgName = "test.jpg";
             return View();
         }
 
