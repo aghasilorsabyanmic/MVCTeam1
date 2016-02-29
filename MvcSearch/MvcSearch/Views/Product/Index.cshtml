@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcSearch.Models.ProductViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @*
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </div><!-- /input-group -->
+    }
+        *@
+
+        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "productResult" }))
+        {
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        }
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@Html.Partial("_Products", Model)
