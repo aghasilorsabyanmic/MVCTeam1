@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MvcSearch.Models.ProductViewModel>
+
+@{
+    ViewBag.Title = "IndexList";
+}
+
+<h2>IndexList</h2>
+
+
+<div class="row">
+    <div class="col-md-6">
+        @{ 
+            var ajaxOptions = new AjaxOptions
+            {
+                HttpMethod = "get",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "productResult"
+            };
+        }
+        @using (Ajax.BeginForm(ajaxOptions))
+        {
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        }
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="productResult">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts 
+    {
+    <script>
+        var a = "Hello";
+    </script>
+   
+    }

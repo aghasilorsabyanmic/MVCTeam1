@@ -14,7 +14,7 @@ namespace MvcSearch.Controllers
         {
             var products = ModelFactory.GetProducts();
 
-            if(!string.IsNullOrEmpty(q))
+            if(!string.IsNullOrWhiteSpace(q))
             {
                 products = products.Where(p => p.Name.Contains(q));
             }
@@ -22,6 +22,18 @@ namespace MvcSearch.Controllers
             if(Request.IsAjaxRequest())
             {
                 return PartialView("_Products", products);
+            }
+
+            return View(products);
+        }
+
+        public ActionResult IndexList(string q)
+        {
+            var products = ModelFactory.GetProducts();
+
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                products = products.Where(p => p.Name.Contains(q));
             }
 
             return View(products);

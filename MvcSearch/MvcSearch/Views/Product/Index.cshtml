@@ -20,7 +20,10 @@
     }
         *@
 
-        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "productResult" }))
+        @using (Ajax.BeginForm(new AjaxOptions {
+            HttpMethod = "get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "productResult" }))
         {
             <div class="input-group">
                 <input type="search" name="q" class="form-control" placeholder="Search for...">
